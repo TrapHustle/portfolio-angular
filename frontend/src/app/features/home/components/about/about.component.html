@@ -1,0 +1,21 @@
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="about-subtitle">#The_Edabit,</h2>
+    <div class="typewriter">
+      <h2 class="word word1">Full Stack Developper</h2>
+      <h2 class="word word2"></h2>
+      <h2 class="word word3">UX/UI Designer</h2>
+    </div>
+    <h2 class="about-subtitle">Based in cocody, Abidjan.</h2>
+    
+    <div class="about-content">
+      <p class="about-text">{{ aboutText }}</p>
+      
+      <div class="skills-grid">
+        <div *ngFor="let skill of skills" class="skill-tag">
+          {{ skill }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

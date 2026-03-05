@@ -1,0 +1,22 @@
+<section class="stakes">
+  <h2 class="section-title">
+    Stakes
+  </h2>
+  <div class="stakes-grid">
+    <div *ngFor="let stake of stakes" class="stake-card">
+      <div class="stake-icon-wrapper">
+        <img 
+          [src]="stake.icon" 
+          [alt]="stake.name"
+          width="32" 
+          height="32"
+          class="stake-icon"
+        />
+      </div>
+      <div class="stake-info">
+        <h4>{{ stake.name }}</h4>
+        <p>{{ stake.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<section class="education" id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    
+    <div class="education-list">
+      <div *ngFor="let edu of education" class="education-card">
+        <div class="education-header">
+          <div>
+            <h3 class="degree">{{ edu.degree }}</h3>
+            <p class="school">{{ edu.school }}</p>
+          </div>
+          <span class="period">{{ edu.start_date }} - {{ edu.end_date || 'Present' }}</span>
+        </div>
+        
+        <p class="description">{{ edu.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

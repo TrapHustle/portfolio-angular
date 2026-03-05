@@ -1,0 +1,29 @@
+<section class="experience" id="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    
+    <div class="timeline">
+      <div *ngFor="let exp of experiences" class="timeline-item">
+        <div class="timeline-marker" [class.current]="exp.is_current"></div>
+        
+        <div class="timeline-content">
+          <div class="experience-header">
+            <div>
+              <img *ngIf="exp.company_logo" 
+                   [src]="exp.company_logo?.replace('http://localhost:8000', '')" 
+                   [alt]="exp.company"
+                   class="company-logo">
+              <h3 class="position">{{ exp.position }}</h3>
+              <p class="company">{{ exp.company }}</p>
+            </div>
+            <span class="period">{{ exp.start_date }} - {{ exp.is_current ? 'Present' : exp.end_date }}</span>
+          </div>
+          
+          <p class="description">{{ exp.description }}</p>
+          
+          <span *ngIf="exp.is_current" class="current-badge">Currently working</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

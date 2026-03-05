@@ -1,0 +1,43 @@
+.portfolio-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  width: 380px;
+  min-width: 380px;
+  flex-shrink: 0;
+  height: fit-content;
+  align-self: flex-start;
+
+  @media (max-width: 1024px) {
+    position: static;
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+
+  @media (max-width: 1024px) {
+    gap: 16px;
+  }
+}
+

@@ -1,0 +1,35 @@
+<section class="projects" id="projects">
+  <div class="container">
+    <h2 class="section-title">
+      🚀 Projects
+    </h2>
+    <div class="projects-grid">
+      <article *ngFor="let project of projects" class="project-card">
+        <div class="project-image">
+          <img 
+            *ngIf="project.image"
+            [src]="project.image" 
+            [alt]="project.title"
+          />
+        </div>
+        <div class="project-info">
+          <h3>{{ project.title }}</h3>
+          <div class="project-meta">
+            <span class="category">{{ project.category }}</span>
+            <span *ngIf="project.pages_count" class="pages">
+              • {{ project.pages_count }} Pages
+            </span>
+          </div>
+          <a 
+            *ngIf="project.url" 
+            [href]="project.url" 
+            target="_blank" 
+            class="project-link"
+          >
+            View Project →
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,135 @@
+.projects {
+  padding: 80px 20px;
+  background: #1a0000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 60px 0;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  padding: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 68, 68, 0.3);
+    transform: translateY(-8px);
+  }
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover & img {
+    transform: scale(1.05);
+  }
+}
+
+.project-header {
+  padding: 32px;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    flex: 1;
+  }
+}
+
+.category {
+  font-size: 12px;
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  padding: 0 32px;
+  font-family: 'Inter', sans-serif;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 0 32px;
+}
+
+.tag {
+  font-size: 13px;
+  padding: 6px 12px;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Inter', sans-serif;
+}
+
+.project-link {
+  color: #ff4444;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 0 32px 32px 32px;
+  display: inline-block;
+
+  &:hover {
+    color: #ff3333;
+    transform: translateX(4px);
+  }
+}
+
