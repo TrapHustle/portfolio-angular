@@ -6,7 +6,7 @@ class User(models.Model):
     bio = models.TextField()
     title = models.CharField(max_length=200, blank=True)
     avatar = models.URLField(blank=True, null=True)
-    cv = models.FileField(upload_to='cv/', blank=True, null=True)
+    cv = models.URLField(max_length=500, blank=True, null=True)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
