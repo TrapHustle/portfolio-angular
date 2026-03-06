@@ -1,7 +1,9 @@
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../shared/services/api.service';
 import { IProject } from '../../../../shared/models/interfaces';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-projects',
@@ -23,7 +25,7 @@ export class ProjectsComponent implements OnInit {
       next: (data) => {
         this.projects = data.map(p => ({
           ...p,
-          image: p.image?.replace('http://localhost:8000', '') || ''
+          image: p.image?.replace('http://localhost:8000', environment.apiUrl) || ''
         }));
         console.log('PROJECTS:', this.projects);
         setTimeout(() => {

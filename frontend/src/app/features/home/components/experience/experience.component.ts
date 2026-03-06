@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../shared/services/api.service';
+
 import { IExperience } from '../../../../shared/models/interfaces';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-experience',
@@ -29,5 +31,10 @@ export class ExperienceComponent implements OnInit {
       },
       error: (err) => console.error('ERREUR experience:', err)
     });
+  }
+
+  getLogoUrl(url: string | null): string {
+    if (!url) return '';
+    return url.replace('http://localhost:8000', environment.apiUrl);
   }
 }

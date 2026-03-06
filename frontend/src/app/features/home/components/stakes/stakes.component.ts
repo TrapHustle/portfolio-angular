@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../../../shared/services/api.service';
+import { IStake } from '../../../../shared/models/interfaces';
 
 @Component({
   selector: 'app-stakes',
@@ -8,13 +10,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './stakes.component.html',
   styleUrls: ['./stakes.component.scss']
 })
-export class StakesComponent {
-  stakes = [
-  { name: 'Figma', description: 'Design Tool', icon: 'assets/icons/figma.svg' },
-  { name: 'VS Code', description: 'Code Editor', icon: 'assets/icons/vscode.svg' },
-  { name: 'Python', description: 'Programming Language', icon: 'assets/icons/python.svg' },
-  { name: 'Django', description: 'Web Framework', icon: 'assets/icons/django.svg' },
-  { name: 'Odoo', description: 'ERP Platform', icon: 'assets/icons/odoo.svg' },
-  { name: 'Java', description: 'Desktop Development', icon: 'assets/icons/java.svg' },
-];
+export class StakesComponent implements OnInit {
+  stakes: IStake[] = [];
+
+  constructor(
+    private api: ApiService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.api.getStakes().subscribe({
+      next: (data) => {
+        this.stakes = data;
+        setTimeout(() => this.cdr.detectChanges(), 0);
+      },
+      error: (err) => console.error('ERREUR stakes:', err)
+    });
+  }
 }

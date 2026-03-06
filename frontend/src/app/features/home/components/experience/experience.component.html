@@ -9,10 +9,10 @@
         <div class="timeline-content">
           <div class="experience-header">
             <div>
-              <img *ngIf="exp.company_logo" 
-                   [src]="exp.company_logo?.replace('http://localhost:8000', '')" 
-                   [alt]="exp.company"
-                   class="company-logo">
+                      <img *ngIf="exp.company_logo" 
+                        [src]="getLogoUrl(exp.company_logo)"
+                        [alt]="exp.company"
+                        class="company-logo">
               <h3 class="position">{{ exp.position }}</h3>
               <p class="company">{{ exp.company }}</p>
             </div>

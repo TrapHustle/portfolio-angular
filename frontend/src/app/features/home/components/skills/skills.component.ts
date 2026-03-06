@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../shared/services/api.service';
-import { ISkill } from '../../../../shared/models/interfaces';
+import { IStake } from '../../../../shared/models/interfaces';
 
 @Component({
   selector: 'app-skills',
@@ -11,13 +11,17 @@ import { ISkill } from '../../../../shared/models/interfaces';
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent implements OnInit {
-  skills: ISkill[] = [];
+  skills: IStake[] = [];
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.api.getSkills().subscribe(data => {
-      this.skills = data;
+    this.api.getStakes().subscribe({
+      next: (data) => {
+        this.skills = data;
+        setTimeout(() => this.cdr.detectChanges(), 0);
+      },
+      error: (err) => console.error('ERREUR:', err)
     });
   }
 }

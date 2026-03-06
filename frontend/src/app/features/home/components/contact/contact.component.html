@@ -10,11 +10,11 @@
         <div class="contact-details">
           <div class="detail-item">
             <strong>Email:</strong>
-            <a href="mailto:hello@johnanderson.dev">hello@johnanderson.dev</a>
+            <a href="mailto:kotchid6@gmail.com">kotchid6@gmail.com</a>
           </div>
           <div class="detail-item">
             <strong>Location:</strong>
-            <span>San Francisco, CA</span>
+            <span>Cocody, Abidjan</span>
           </div>
           <div class="detail-item">
             <strong>Available for:</strong>
@@ -24,11 +24,18 @@
       </div>
       
       <form class="contact-form" (ngSubmit)="onSubmit()">
+        <div *ngIf="success" class="success-message">
+          ✅ Message envoyé avec succès !
+        </div>
+        <div *ngIf="error" class="error-message">
+          ❌ {{ error }}
+        </div>
+
         <div class="form-group">
           <input 
             type="text" 
-            [(ngModel)]="formData.fullName" 
-            name="fullName"
+            [(ngModel)]="formData.full_name" 
+            name="full_name"
             placeholder="Your Name"
             required
             class="form-input">
@@ -41,6 +48,15 @@
             name="email"
             placeholder="Your Email"
             required
+            class="form-input">
+        </div>
+
+        <div class="form-group">
+          <input 
+            type="tel" 
+            [(ngModel)]="formData.phone" 
+            name="phone"
+            placeholder="Your Phone (optional)"
             class="form-input">
         </div>
         
@@ -57,13 +73,9 @@
         <button 
           type="submit" 
           class="btn btn-primary"
-          [disabled]="loading">
-          {{ loading ? 'Sending...' : 'Send Message' }}
+          [disabled]="sending">
+          {{ sending ? 'Sending...' : 'Send Message' }}
         </button>
-        
-        <div *ngIf="submitted" class="success-message">
-          ✓ Thank you! I'll get back to you soon.
-        </div>
       </form>
     </div>
   </div>

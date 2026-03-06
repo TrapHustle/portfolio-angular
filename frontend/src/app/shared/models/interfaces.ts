@@ -35,12 +35,11 @@ export interface IProject {
   tags?: string[];
 }
 
-export interface ISkill {
+export interface IStake {
   id: number;
   name: string;
-  category?: string;
+  description?: string;
   icon?: string;
-  proficiency?: number;
 }
 
 export interface IEducation {

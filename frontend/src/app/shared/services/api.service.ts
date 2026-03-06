@@ -1,18 +1,19 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
   IUser, IExperience, IProject,
-  ISkill, IEducation, ISocialNetwork,
+  IStake, IEducation, ISocialNetwork,
   ILocation, IContact
 } from '../models/interfaces';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
-  private baseUrl = '/api';
+  private baseUrl = `${environment.apiUrl}/api`;
 
   constructor(private http: HttpClient) {}
 
@@ -28,8 +29,8 @@ export class ApiService {
     return this.http.get<IProject[]>(`${this.baseUrl}/projects/`);
   }
 
-  getSkills(): Observable<ISkill[]> {
-    return this.http.get<ISkill[]>(`${this.baseUrl}/skills/`);
+  getStakes(): Observable<IStake[]> {
+    return this.http.get<IStake[]>(`${this.baseUrl}/stakes/`);
   }
 
   getEducation(): Observable<IEducation[]> {
