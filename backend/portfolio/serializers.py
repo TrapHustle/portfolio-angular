@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Experience, Project, Skill, Education, SocialNetwork, Location
+from .models import User, Experience, Project, Stake, Education, SocialNetwork, Location
 
 class UserSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField()
@@ -47,9 +47,9 @@ class ProjectSerializer(serializers.ModelSerializer):
             return request.build_absolute_uri(obj.image.url) if request else obj.image.url
         return None
 
-class SkillSerializer(serializers.ModelSerializer):
+class StakeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Skill
+        model = Stake
         fields = '__all__'
 
 class EducationSerializer(serializers.ModelSerializer):

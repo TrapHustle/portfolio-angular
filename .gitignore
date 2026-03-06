@@ -1,0 +1,9 @@
+# Angular / Node
+node_modules/
+dist/
+.angular/
+npm-debug.log
+package-lock.json
+
+# Python virtual environment
+venv/

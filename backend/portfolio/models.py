@@ -36,10 +36,10 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
-class Skill(models.Model):
+class Stake(models.Model):
     name = models.CharField(max_length=100)
-    category = models.CharField(max_length=100, blank=True)
-    icon = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=200, blank=True)
+    icon = models.CharField(max_length=300, blank=True)
 
     def __str__(self):
         return self.name

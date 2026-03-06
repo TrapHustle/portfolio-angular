@@ -1,7 +1,10 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import User, Experience, Project, Skill, Education, SocialNetwork, Location
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from .models import User, Experience, Project, Stake, Education, SocialNetwork, Location
 from .serializers import *
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
@@ -25,9 +28,9 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
     def get_serializer_context(self):
         return {'request': self.request}
 
-class SkillViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Skill.objects.all()
-    serializer_class = SkillSerializer
+class StakeViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Stake.objects.all()
+    serializer_class = StakeSerializer
 
 class EducationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Education.objects.all()
@@ -42,10 +45,42 @@ class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = LocationSerializer
 
 @api_view(['POST'])
+@csrf_exempt
 def contact(request):
     full_name = request.data.get('full_name')
     email = request.data.get('email')
+    phone = request.data.get('phone', '')
     message = request.data.get('message')
+
     if not full_name or not email or not message:
-        return Response({'error': 'Champs obligatoires manquants.'}, status=status.HTTP_400_BAD_REQUEST)
-    return Response({'success': 'Message reçu.'}, status=status.HTTP_200_OK)
+        return Response(
+            {'error': 'Champs obligatoires manquants.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    try:
+        send_mail(
+            subject=f'Portfolio Contact — {full_name}',
+            message=f'''
+Nouveau message depuis le portfolio :
+
+Nom : {full_name}
+Email : {email}
+Téléphone : {phone}
+
+Message :
+{message}
+            ''',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.CONTACT_EMAIL],
+            fail_silently=False,
+        )
+        return Response(
+            {'success': 'Message envoyé avec succès.'},
+            status=status.HTTP_200_OK
+        )
+    except Exception as e:
+        return Response(
+            {'error': f'Erreur envoi email: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
