@@ -5,7 +5,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=100)
     bio = models.TextField()
     title = models.CharField(max_length=200, blank=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    avatar = models.URLField(blank=True, null=True)
     cv = models.FileField(upload_to='cv/', blank=True, null=True)
     is_available = models.BooleanField(default=True)
 
@@ -29,7 +29,7 @@ class Project(models.Model):
     slug = models.SlugField(unique=True)
     category = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='projects/', blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
     url = models.URLField(blank=True)
     pages_count = models.IntegerField(blank=True, null=True)
 
@@ -39,7 +39,7 @@ class Project(models.Model):
 class Stake(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200, blank=True)
-    icon = models.CharField(max_length=300, blank=True)
+    icon = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name

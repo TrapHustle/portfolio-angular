@@ -2,24 +2,9 @@ from rest_framework import serializers
 from .models import User, Experience, Project, Stake, Education, SocialNetwork, Location
 
 class UserSerializer(serializers.ModelSerializer):
-    avatar = serializers.SerializerMethodField()
-    cv = serializers.SerializerMethodField()
-
     class Meta:
         model = User
         fields = '__all__'
-
-    def get_avatar(self, obj):
-        if obj.avatar:
-            request = self.context.get('request')
-            return request.build_absolute_uri(obj.avatar.url) if request else obj.avatar.url
-        return None
-
-    def get_cv(self, obj):
-        if obj.cv:
-            request = self.context.get('request')
-            return request.build_absolute_uri(obj.cv.url) if request else obj.cv.url
-        return None
 
 class ExperienceSerializer(serializers.ModelSerializer):
     company_logo = serializers.SerializerMethodField()
@@ -35,17 +20,9 @@ class ExperienceSerializer(serializers.ModelSerializer):
         return None
 
 class ProjectSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
-
     class Meta:
         model = Project
         fields = '__all__'
-
-    def get_image(self, obj):
-        if obj.image:
-            request = self.context.get('request')
-            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
-        return None
 
 class StakeSerializer(serializers.ModelSerializer):
     class Meta:
