@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'portfolio',
-    'cloudinary_storage',
-    'cloudinary',
+    'cloudinary_storage',  # ← avant portfolio
+    'cloudinary',          # ← avant portfolio
+    'portfolio',           # ← en dernier
 ]
 
 MIDDLEWARE = [
