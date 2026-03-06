@@ -136,12 +136,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # CORS Configuration
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True
-else:
-    CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'https://exam-angular.vercel.app').split(',')
-    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in CORS_ALLOWED_ORIGINS]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
