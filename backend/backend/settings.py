@@ -137,7 +137,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Fichiers media — Cloudinary en production, local en développement
 if os.environ.get('CLOUDINARY_CLOUD_NAME'):
-        print('Cloudinary activé:', os.environ.get('CLOUDINARY_CLOUD_NAME'))
+    print('Cloudinary activé:', os.environ.get('CLOUDINARY_CLOUD_NAME'))
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
